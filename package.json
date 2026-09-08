@@ -1,24 +1,24 @@
 {
-  "name": "birthday",
+  "name": "dayo-birthday",
   "version": "1.0.0",
-  "description": "Birthday greetings..",
+  "description": "A playful interactive birthday surprise for Dayo (Dekunle Fuji).",
   "main": " ",
   "scripts": {
     "server-node": "http-server -p 8081"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ayusharma/birthday.git"
+    "url": "git+https://github.com/khaleedcodes/hbd-dayo.git"
   },
   "keywords": [
     "Birthday"
   ],
-  "author": "Ayush Sharma",
+  "author": "Khaleed",
   "license": "WTFPL",
   "bugs": {
-    "url": "https://github.com/ayusharma/birthday/issues"
+    "url": "https://github.com/khaleedcodes/hbd-dayo/issues"
   },
-  "homepage": "https://github.com/ayusharma/birthday#readme",
+  "homepage": "https://github.com/khaleedcodes/hbd-dayo#readme",
   "dependencies": {
     "http-server": "^0.11.1"
   }

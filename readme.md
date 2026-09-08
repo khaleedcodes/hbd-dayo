@@ -1,12 +1,8 @@
-# ⭐⭐ Give a star if you are helped by this repo 🙏⭐⭐
-# Happy Birthday
+# Dayo's Birthday Website
 
-<img width="1920" height="881" alt="preview" src="https://github.com/user-attachments/assets/264fa78c-3edb-48ca-9f4a-2816e92e3d72" />
+A playful, mobile-first birthday experience for Dayo (Dekunle Fuji).
 
-
-## A Happy Birthday animation design in CSS3, HTML5.
-
-URL: http://tiny.cc/brthday-web
+The party unfolds automatically after the opening tap, with lights, music, balloons, confetti, a birthday cake, and a scrapbook of Dayo's photos and GIFs. Dayo can make a wish, read the birthday note at her own pace with Previous and Next controls, return to the party, and open every memory in a full-screen viewer.
 
 Technology Used: HTML5 CSS3 jQuery
 
@@ -20,14 +16,19 @@ Technology Used: HTML5 CSS3 jQuery
 
 You can find the legacy codes on https://github.com/Shizu-ka/Birthday-Website/tree/legacy
 
-## Future Plan
-- idk maybe make the website responsive or just block usage on mobile.
+## Run locally
+
+```bash
+npm install
+npm run server-node
+```
+
+Cake asset reference: [ProgrammerGaurav/happy-birthday](https://github.com/ProgrammerGaurav/happy-birthday). The confetti behavior was recreated locally to match its paper-and-ribbon feel while using Dayo's color palette.
 
 ## FAQ
 ### How can i change the picture?
 ```
-Just change person.png or photos1-4 in assets/images in the directory to any picture you want. 
-Don't forget to resize your image to 490x435 px for person.png and 1920x1080 for album photos.jpg.
+Add or replace Dayo's images in `assets/images/dayo-gallery`, then update the matching memory cards in `index.html`.
 ```
 ### How can i change the alphabet on the baloons?
 ```

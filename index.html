@@ -5,28 +5,29 @@
 <!--[if gt IE 8]> <html> <![endif]-->
 <!--[if !IE]><!--><html lang="en"><!-- <![endif]-->
 <head>
-	<title>Happy Birthday</title>
+	<title>Happy Birthday, Dayo! 🎉</title>
 	<meta charset="UTF-8" />
-	<meta name="description" content="Happy Birthday Anggie">
+	<meta name="description" content="A playful birthday surprise made especially for Dayo — a.k.a. Dekunle Fuji.">
 	<meta name="robots" content="index, follow" />
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-	<link rel="author" href="alex" /> 
-    <meta name="keywords" content="Birthday, Happy">
+	<meta name="theme-color" content="#241035">
+    <meta name="keywords" content="Dayo, Dekunle Fuji, Birthday, Happy Birthday">
 
     <!-- Strat of Facebook Meta -->
     <meta property="og:type" content="E-Greeting" />
-    <meta property="og:image" content="favicon.ico" />
-    <meta property="og:description" content="Wish you a very Happy Birthday">
+	<meta property="og:title" content="Happy Birthday, Dayo! 🎉" />
+	<meta property="og:image" content="assets/images/favicon.ico" />
+	<meta property="og:description" content="A little birthday magic for Dayo — lights, music, balloons and cake included.">
     <!-- End of Facebook Meta Tags -->
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
-	<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet" type="text/css">
 	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet/less" href="cake.less"> 
 	<style type="text/css" id="less:birthday-cake">
@@ -320,13 +321,45 @@ p {
 
 <body>
 	<div class="loading"></div>
-  <img src="assets/images/photo1.jpg" class="album-photo album-left-1">
-  <img src="assets/images/photo2.jpg" class="album-photo album-left-2">
-  <img src="assets/images/photo3.jpg" class="album-photo album-right-1">
-  <img src="assets/images/photo4.jpg" class="album-photo album-right-2">
+	<canvas id="confetti" aria-hidden="true"></canvas>
+	<div class="photo-scatter">
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 1" aria-label="View Dayo memory 1 full size"><img src="assets/images/dayo-gallery/dayo-01.jpg" alt="Dayo childhood memory"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 2" aria-label="View Dayo memory 2 full size"><img src="assets/images/dayo-gallery/dayo-02.jpg" alt="Dayo smiling for a selfie"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 3" aria-label="View Dayo memory 3 full size"><img src="assets/images/dayo-gallery/dayo-03.jpg" alt="Dayo posing for a selfie"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 4" aria-label="View Dayo memory 4 full size"><img src="assets/images/dayo-gallery/dayo-04.jpg" alt="Dayo making a peace sign"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 5" aria-label="View Dayo memory 5 full size"><img src="assets/images/dayo-gallery/dayo-05.jpg" alt="Dayo smiling outdoors"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 6" aria-label="View Dayo memory 6 full size"><img src="assets/images/dayo-gallery/dayo-06.jpg" alt="Dayo posing beneath a blue sky"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 7" aria-label="View Dayo memory 7 full size"><img src="assets/images/dayo-gallery/dayo-07.jpg" alt="Dayo smiling in a garden"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 8" aria-label="View Dayo memory 8 full size"><img src="assets/images/dayo-gallery/dayo-08.jpg" alt="A warm-toned portrait of Dayo"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 9" aria-label="View Dayo memory 9 full size"><img src="assets/images/dayo-gallery/dayo-09.jpg" alt="A black-and-white portrait of Dayo"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo mood board" aria-label="View Dayo mood board full size"><img src="assets/images/dayo-gallery/dayo-10.jpg" alt="Dayo's black-and-white mood board"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 11" aria-label="View Dayo memory 11 full size"><img src="assets/images/dayo-gallery/dayo-11.jpg" alt="Dayo posing outside"></button>
+		<button class="memory-card" type="button" data-photo-label="Dayo memory 12" aria-label="View Dayo memory 12 full size"><img src="assets/images/dayo-gallery/dayo-12.jpg" alt="Dayo standing on a sunny campus"></button>
+		<button class="memory-card memory-card--gif" type="button" data-photo-label="Birthday mood GIF" aria-label="View the birthday mood GIF full size"><img src="assets/images/dayo-gallery/dayo-13.gif" alt="Animated birthday mood GIF"></button>
+		<button class="memory-card memory-card--meme" type="button" data-photo-label="Playful glasses mood" aria-label="View the playful glasses mood full size"><img src="assets/images/dayo-gallery/dayo-14.jpg" alt="A playful character wearing glasses"></button>
+	</div>
+	<div class="photo-lightbox" id="photo_lightbox" role="dialog" aria-modal="true" aria-label="Full-size birthday memory" aria-hidden="true">
+		<button class="photo-lightbox__close" id="photo_lightbox_close" type="button" aria-label="Close full-size photo">Close ×</button>
+		<figure class="photo-lightbox__frame">
+			<img id="photo_lightbox_image" src="" alt="">
+			<figcaption id="photo_lightbox_caption"></figcaption>
+		</figure>
+	</div>
 
-  <!-- Hint image -->
-  <img src="assets/images/can-zoom.png" class="can-zoom">
+	<div class="dayo-intro" aria-live="polite">
+		<span class="dayo-intro__eyebrow">A tiny birthday production for</span>
+		<span class="dayo-intro__title">
+			<span class="dayo-intro__name">Dayo</span>
+			<span class="dayo-intro__nickname">(Dekunle Fuji)</span>
+		</span>
+		<span class="cta-with-cat dayo-intro__cta">
+			<button class="btn btn-primary dayo-intro__button" id="turn_on">Enter Dayo's party →</button>
+			<span class="click-cat-hint" aria-hidden="true">
+				<span class="click-cat-hint__bubble">pssst… click me!</span>
+				<img src="assets/images/click-me-cat.gif" alt="">
+			</span>
+		</span>
+	</div>
 
 	<audio class="song" controls loop>
         <source src="assets/audio/hbd.mp3"></source>
@@ -342,16 +375,16 @@ p {
     	<h2 style="color:#D14D39;">D</h2>
     </div>
 	<div class="balloons text-center" id="b4">
-    	<h2 style="color:#8FAD00;">B</h2>
+		<h2 style="color:#8FAD00;">D</h2>
     </div>
 	<div class="balloons text-center" id="b5">
     	<h2 style="color:#8377E4;">A</h2>
     </div>
     <div class="balloons text-center" id="b6">
-    	<h2 style="color:#99C96A;">B</h2>
+		<h2 style="color:#99C96A;">Y</h2>
     </div>
     <div class="balloons text-center" id="b7">
-    	<h2 style="color:#20CFB4;">Y</h2>
+		<h2 style="color:#20CFB4;">O</h2>
     </div>
 
     <img src="assets/images/Balloon-Border.png" width="100%" class="balloon-border">
@@ -381,121 +414,49 @@ p {
 		</div>
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<img src="assets/images/banner.png" class="bannar">
+				<img src="assets/images/banner.png" class="bannar" alt="Happy Birthday banner">
+				<div class="name-ribbon" aria-hidden="true">DAYO'S DAY!</div>
 			</div>
 		</div>
-		<!-- <div class="row message">
-			<div class="col-md-12"><p>Khushbu</p></div>
-		</div> -->
 		<div class="row cake-cover">
 			<div class="col-md-12 texr-center">
-				<div class="cake">
-				  <div class="velas">
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				  </div>
-				  <div class="cobertura"></div>
-          <img src="assets/images/person.png" class="profile-img">
-				  <div class="bizcocho"></div>
+				<div class="cake reference-cake">
+					<img src="assets/images/dayo-cake.gif" class="dayo-cake-image" alt="A colorful animated birthday cake for Dayo">
+					<span class="cake-caption">The candles are listening…</span>
+					<div class="party-action" id="party_action">
+						<span class="cta-with-cat">
+							<button class="btn btn-primary" id="story">Make a wish, Dayo ✨</button>
+							<span class="click-cat-hint" aria-hidden="true">
+								<span class="click-cat-hint__bubble">your turn—tap!</span>
+								<img src="assets/images/click-me-cat.gif" alt="">
+							</span>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row message">
 			<div class="col-md-12">
-				<p>Today is...</p>
-				<p>as beautiful as other days</p>
-				<p>but you realize</p>
-				<p>another year has gone</p>
-				<p>in a blink of the eyes</p>
-				<p><strong>however</strong></p>
-				<p>Do you know..?</p>
-				<p>today is just special</p>
-				<p>so special to you</p>
-				<p>that's why</p>
-				<p>Let's make it...</p>
-				<p>the best celebration ever</p>
-				<p>and let me share...</p>
-				<p>a piece of happiness to you</p>
-				<p>I made all this...</p>
-				<p>as a birthday present to you</p>
-				<p>I'm glad we met on zzz</p>
-				<p>thanks for the friendship we made</p>
-				<p>thanks for everything</p>
-				<p>I wish you all the best</p>
-				<p>May your life be at ease</p>
-				<p>May all your wishes come true</p>
-				<p>Remember</p>
-				<p>your ambitions</p>
-				<p>you live as a free bird...</p>
-				<p>flying in the blue sky</p>
-				<p>Now things are different...</p>
-				<p>real story of your life</p>
-				<p>is just about to begin</p>
-				<p>indeed..</p>
-				<p>but...</p>
-				<p>don't worry</p>
-				<p>because...</p>
-				<p>God has your back</p>
-				<p>and</p>
-				<p>this year will be better</p>
-				<p>and I hope</p>
-				<p>you'll find...</p>
-				<p>happiness along the way</p>
-				<p>keep your spirit up</p>
-				<p>enjoy every single moment...</p>
-				<p>that you experience today</p>
-				<p>fill it with your most beautiful smile</p>
-				<p>and make it the best memory..</p>
-				<p>lastly...</p>
-				<p>I'd like to wish you one more time</p>
-				<p>a very happy birthday babyy ❤️</p>
+				<button class="message-close" id="message_close" type="button" aria-label="Close birthday note">Close ×</button>
+				<p><span class="message-kicker">Dear Dayo...</span>today has your name written all over it.</p>
+				<p>So we turned on every light, queued the music, and let the balloons loose.</p>
+				<p>Because ordinary simply would not do. Not for you. Not for Dekunle Fuji. ✨</p>
+				<p>May this new year bring loud laughter, soft moments, and very bold dreams.</p>
+				<p>May joy keep finding you—in the big wins and the tiny, perfect moments.</p>
+				<p>May God keep guiding you, protecting you, and opening beautiful doors for you.</p>
+				<p>Keep being warm. Keep being brilliant. Keep being wonderfully, unmistakably Dayo.</p>
+				<p><span class="message-kicker">Today, we celebrate</span>the one, the only, the absolutely iconic Dayo.</p>
+				<p class="message-finale"><span class="message-kicker">With a whole lot of love</span>Happy Birthday, Dayo! ❤️</p>
+				<nav class="message-card-nav" aria-label="Birthday note pages">
+					<button class="message-nav-button" id="message_prev" type="button" aria-label="Previous birthday message">← Previous</button>
+					<span class="message-progress" id="message_progress" aria-live="polite">1 / 9</span>
+					<button class="message-nav-button" id="message_next" type="button" aria-label="Next birthday message">Next →</button>
+				</nav>
 			</div>
 		</div>
-		<div class="navbar navbar-fixed-bottom">
-			<div class="row">
-				<div class="col-md-6 text-center col-md-offset-3">
-					<button class="btn btn-primary" id="turn_on">Turn On Lights</button>
-					<button class="btn btn-primary" id="play">Play the Music Buddy</button>
-					<button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
-					<button class="btn btn-primary" id="balloons_flying">Calm, i got you some baloons</button>
-					<button class="btn btn-primary" id="cake_fadein">Cake? of course!</button>
-					<button class="btn btn-primary" id="light_candle">Don't forget to Light the Candle</button>
-					<button class="btn btn-primary" id="wish_message">Happy Birthday</button>
-					<button class="btn btn-primary" id="story">A mesage for you</button>
-					<!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
-				</div>
-			</div>
-			<!-- <div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div> -->
-		</div>
-
-
 	</div>
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="zoomed photo">
-  </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="js/confetti.js"></script>
 <script src="js/effect.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8SQ2H9J48M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8SQ2H9J48M');
-</script>
 </html>
