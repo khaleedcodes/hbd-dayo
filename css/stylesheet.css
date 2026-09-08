@@ -1745,7 +1745,7 @@ audio {
 	box-shadow: 10px 10px 0 #c4515c;
 	color: #fff7e8;
 	font-family: 'Happy', 'Signika', sans-serif;
-	font-size: clamp(34px, 5vw, 62px);
+	font-size: clamp(28px, 3.7vw, 46px);
 	font-style: normal;
 	font-weight: 400;
 	line-height: 1.06;
@@ -1764,7 +1764,7 @@ audio {
 
 .message-finale {
 	color: #ffd65a !important;
-	font-size: clamp(46px, 7vw, 84px) !important;
+	font-size: clamp(34px, 5vw, 62px) !important;
 	transform: rotate(-1deg);
 }
 
@@ -1870,8 +1870,8 @@ audio {
 	}
 
 	.message p {
-		font-size: clamp(34px, 10vw, 54px);
-		line-height: 1.05;
+		font-size: clamp(27px, 7.2vw, 38px);
+		line-height: 1.08;
 	}
 }
 
@@ -1926,8 +1926,12 @@ audio {
 	}
 
 	.message p {
-		padding: 26px 22px;
+		padding: 30px 22px 26px;
 		box-shadow: 7px 7px 0 #c4515c;
+	}
+
+	.message-finale {
+		font-size: clamp(32px, 8.5vw, 42px) !important;
 	}
 
 	.message-close {

@@ -63,6 +63,15 @@ $('document').ready(function() {
 		window.DayoConfetti.burst(pieceCount > 100 ? 6500 : 4400, pieceCount > 100 ? 1.35 : 1);
 	}
 
+	function startDayoConfetti() {
+		if (!window.DayoConfetti) return;
+		if (typeof window.DayoConfetti.start === 'function') {
+			window.DayoConfetti.start(1);
+			return;
+		}
+		celebrateDayo(70);
+	}
+
 	function beginAutomaticParty() {
 		var audio = $('.song')[0];
 		var playAttempt = audio.play();
@@ -107,7 +116,7 @@ $('document').ready(function() {
 
 		schedule(function() {
 			spellDayo();
-			celebrateDayo(70);
+			startDayoConfetti();
 		}, 6900);
 
 		schedule(function() {

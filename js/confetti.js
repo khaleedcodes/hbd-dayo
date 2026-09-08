@@ -3,29 +3,45 @@
 
 	var canvas = document.getElementById('confetti');
 	var fallbackColors = ['#ffd65a', '#c4515c', '#8377e4', '#20cfb4', '#f2b300', '#ff8fa3', '#fff7e8'];
+	var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	if (!canvas || typeof canvas.getContext !== 'function') {
+		function createFallbackPieces(duration, intensity, continuous) {
+			var count = Math.round((continuous ? 48 : 65) * (intensity || 1));
+
+			for (var fallbackIndex = 0; fallbackIndex < count; fallbackIndex++) {
+				var fallbackPiece = document.createElement('span');
+				var isRibbon = fallbackIndex % 8 === 0;
+				fallbackPiece.className = 'confetti-fallback' + (isRibbon ? ' confetti-fallback--ribbon' : '');
+				fallbackPiece.style.left = (Math.random() * 100) + 'vw';
+				fallbackPiece.style.backgroundColor = fallbackColors[fallbackIndex % fallbackColors.length];
+				fallbackPiece.style.animationDuration = ((duration / 1000) * (0.72 + (Math.random() * 0.34))) + 's';
+				fallbackPiece.style.animationDelay = (Math.random() * 0.65) + 's';
+				fallbackPiece.style.setProperty('--confetti-drift', ((Math.random() - 0.5) * 260) + 'px');
+				if (continuous) fallbackPiece.style.animationIterationCount = 'infinite';
+				document.body.appendChild(fallbackPiece);
+
+				if (!continuous) {
+					(function(piece) {
+						setTimeout(function() {
+							if (piece.parentNode) piece.parentNode.removeChild(piece);
+						}, duration + 1600);
+					})(fallbackPiece);
+				}
+			}
+		}
+
 		window.DayoConfetti = {
 			burst: function(duration, intensity) {
-				var count = Math.round(65 * (intensity || 1));
-
-				for (var fallbackIndex = 0; fallbackIndex < count; fallbackIndex++) {
-					var fallbackPiece = document.createElement('span');
-					var isRibbon = fallbackIndex % 8 === 0;
-					fallbackPiece.className = 'confetti-fallback' + (isRibbon ? ' confetti-fallback--ribbon' : '');
-					fallbackPiece.style.left = (Math.random() * 100) + 'vw';
-					fallbackPiece.style.backgroundColor = fallbackColors[fallbackIndex % fallbackColors.length];
-					fallbackPiece.style.animationDuration = ((duration / 1000) * (0.72 + (Math.random() * 0.34))) + 's';
-					fallbackPiece.style.animationDelay = (Math.random() * 0.65) + 's';
-					fallbackPiece.style.setProperty('--confetti-drift', ((Math.random() - 0.5) * 260) + 'px');
-					document.body.appendChild(fallbackPiece);
+				createFallbackPieces(duration, intensity, false);
+			},
+			start: function(intensity) {
+				if (reducedMotion) {
+					createFallbackPieces(900, 0.4, false);
+					return;
 				}
-
-				setTimeout(function() {
-					Array.prototype.forEach.call(document.querySelectorAll('.confetti-fallback'), function(piece) {
-						piece.parentNode.removeChild(piece);
-					});
-				}, duration + 1600);
+				this.stop();
+				createFallbackPieces(5200, intensity || 1, true);
 			},
 			stop: function() {
 				Array.prototype.forEach.call(document.querySelectorAll('.confetti-fallback'), function(piece) {
@@ -45,7 +61,9 @@
 	var running = false;
 	var endTime = 0;
 	var animationFrame = null;
-	var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var continuous = false;
+	var continuousPaperCount = 0;
+	var continuousRibbonCount = 0;
 
 	function random(min, max) {
 		return min + (Math.random() * (max - min));
@@ -157,10 +175,20 @@
 		context.clearRect(0, 0, width, height);
 
 		var timeLeft = endTime - now;
-		canvas.style.opacity = timeLeft < 700 ? Math.max(0, timeLeft / 700) : 1;
+		canvas.style.opacity = continuous ? 1 : (timeLeft < 700 ? Math.max(0, timeLeft / 700) : 1);
 
 		papers.forEach(drawPaper);
 		ribbons.forEach(drawRibbon);
+
+		if (continuous) {
+			if (endTime && timeLeft <= 0) {
+				papers = papers.slice(0, continuousPaperCount);
+				ribbons = ribbons.slice(0, continuousRibbonCount);
+				endTime = 0;
+			}
+			animationFrame = window.requestAnimationFrame(render);
+			return;
+		}
 
 		if (timeLeft > 0) {
 			animationFrame = window.requestAnimationFrame(render);
@@ -179,15 +207,44 @@
 		var ribbonCount = Math.round((reducedMotion ? 3 : 9) * (intensity || 1));
 
 		resize();
-		papers = [];
-		ribbons = [];
 
-		for (var i = 0; i < paperCount; i++) papers.push(createPaper(true));
-		for (var j = 0; j < ribbonCount; j++) ribbons.push(createRibbon());
+		if (continuous) {
+			while (papers.length < paperCount) papers.push(createPaper(true));
+			while (ribbons.length < ribbonCount) ribbons.push(createRibbon());
+		} else {
+			papers = [];
+			ribbons = [];
+			for (var i = 0; i < paperCount; i++) papers.push(createPaper(true));
+			for (var j = 0; j < ribbonCount; j++) ribbons.push(createRibbon());
+		}
 
-		endTime = performance.now() + (reducedMotion ? Math.min(duration, 900) : duration);
+		endTime = Math.max(endTime, performance.now() + (reducedMotion ? Math.min(duration, 900) : duration));
 		canvas.style.opacity = 1;
 
+		if (!running) {
+			running = true;
+			animationFrame = window.requestAnimationFrame(render);
+		}
+	}
+
+	function start(intensity) {
+		if (reducedMotion) {
+			burst(900, 0.4);
+			return;
+		}
+
+		resize();
+		continuous = true;
+		continuousPaperCount = Math.round((width <= 560 ? 46 : 70) * (intensity || 1));
+		continuousRibbonCount = Math.round((width <= 560 ? 4 : 7) * (intensity || 1));
+		papers = [];
+		ribbons = [];
+		endTime = 0;
+
+		for (var i = 0; i < continuousPaperCount; i++) papers.push(createPaper(true));
+		for (var j = 0; j < continuousRibbonCount; j++) ribbons.push(createRibbon());
+
+		canvas.style.opacity = 1;
 		if (!running) {
 			running = true;
 			animationFrame = window.requestAnimationFrame(render);
@@ -197,6 +254,8 @@
 	function stop() {
 		if (animationFrame) window.cancelAnimationFrame(animationFrame);
 		running = false;
+		continuous = false;
+		endTime = 0;
 		papers = [];
 		ribbons = [];
 		context.clearRect(0, 0, width, height);
@@ -208,6 +267,7 @@
 
 	window.DayoConfetti = {
 		burst: burst,
+		start: start,
 		stop: stop
 	};
 })();
